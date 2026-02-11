@@ -1,0 +1,135 @@
+{
+    "version": "1.0",
+    "enabled": true,
+    "preferences": {
+        "showDaily": true,
+        "showSpecial": true,
+        "showUpdates": true,
+        "delayAfterSplash": 2500
+    },
+    "messages": {
+        "greetings": {
+            "morning": {
+                "text": "¡Buenos días!",
+                "icon": "🌅",
+                "message": "Que tengas una transmisión bendecida y llena del Espíritu Santo."
+            },
+            "afternoon": {
+                "text": "¡Buenas tardes!",
+                "icon": "☀️",
+                "message": "Que tengas una transmisión bendecida y llena del Espíritu Santo."
+            },
+            "evening": {
+                "text": "¡Buenas noches!",
+                "icon": "🌙",
+                "message": "Que Dios te acompañe en este servicio nocturno."
+            }
+        },
+        "specialDates": {
+            "12-25": {
+                "name": "Navidad",
+                "icon": "🎄",
+                "message": "Que en esta Navidad, la luz de Cristo ilumine cada transmisión y llegue a más corazones."
+            },
+            "01-01": {
+                "name": "Año Nuevo",
+                "icon": "🎊",
+                "message": "Un nuevo año para llevar el mensaje de esperanza a más corazones. ¡Bendiciones!"
+            },
+            "04-18": {
+                "name": "Viernes Santo",
+                "icon": "✝️",
+                "message": "Recordando el sacrificio que nos dio vida eterna. Que esta transmisión honre Su memoria."
+            },
+            "04-20": {
+                "name": "Domingo de Resurrección",
+                "icon": "🕊️",
+                "message": "¡Él ha resucitado! Celebremos la victoria sobre la muerte con alegría."
+            },
+            "12-31": {
+                "name": "Fin de Año",
+                "icon": "🎆",
+                "message": "Gracias por un año más de servicio y dedicación. ¡Que el próximo sea aún mejor!"
+            }
+        },
+        "updates": [
+            {
+                "id": "example-update-v1.1",
+                "enabled": false,
+                "type": "update",
+                "priority": "medium",
+                "title": "¡Nueva versión disponible!",
+                "icon": "🎉",
+                "message": "ZionCast v1.1 incluye mejoras de rendimiento, corrección de errores y nuevas características para mejorar tu experiencia.",
+                "actions": [
+                    {
+                        "label": "Ver detalles",
+                        "action": "showChangelog"
+                    },
+                    {
+                        "label": "Más tarde",
+                        "action": "dismiss"
+                    }
+                ]
+            }
+        ],
+        "announcements": [
+            {
+                "id": "example-announcement-1",
+                "enabled": false,
+                "type": "special",
+                "title": "¡Anuncio Importante!",
+                "icon": "📢",
+                "message": "Mensaje de ejemplo para anuncios especiales. Puedes personalizar este mensaje.",
+                "showUntil": "2026-12-31"
+            }
+        ]
+    },
+    "verses": [
+        {
+            "text": "Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.",
+            "ref": "Mateo 18:20"
+        },
+        {
+            "text": "Cantad alegres a Dios, habitantes de toda la tierra.",
+            "ref": "Salmos 100:1"
+        },
+        {
+            "text": "Alabad a Jehová, porque él es bueno; porque para siempre es su misericordia.",
+            "ref": "Salmos 107:1"
+        },
+        {
+            "text": "Servid a Jehová con alegría; venid ante su presencia con regocijo.",
+            "ref": "Salmos 100:2"
+        },
+        {
+            "text": "Este es el día que hizo Jehová; nos gozaremos y alegraremos en él.",
+            "ref": "Salmos 118:24"
+        },
+        {
+            "text": "La palabra de Cristo more en abundancia en vosotros, enseñándoos y exhortándoos unos a otros en toda sabiduría.",
+            "ref": "Colosenses 3:16"
+        },
+        {
+            "text": "Hablando entre vosotros con salmos, con himnos y cánticos espirituales, cantando y alabando al Señor en vuestros corazones.",
+            "ref": "Efesios 5:19"
+        },
+        {
+            "text": "Alabad a Dios en su santuario; alabadle en la magnificencia de su firmamento.",
+            "ref": "Salmos 150:1"
+        },
+        {
+            "text": "Venid, aclamemos alegremente a Jehová; cantemos con júbilo a la roca de nuestra salvación.",
+            "ref": "Salmos 95:1"
+        },
+        {
+            "text": "Cantaré a Jehová en mi vida; a mi Dios cantaré salmos mientras viva.",
+            "ref": "Salmos 104:33"
+        }
+    ],
+    "stats": {
+        "trackDaysUsing": true,
+        "trackTotalOpens": true,
+        "showStatsInWelcome": true
+    }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "zion-presenter",
+  "version": "3.0.0",
+  "description": "Zion Presenter Desktop - Sistema de Proyección Profesional",
+  "main": "main.js",
+  "author": "Yael Gtz",
+  "scripts": {
+    "start": "electron .",
+    "server": "node server.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.zionpresenter.app",
+    "productName": "Zion Presenter",
+    "copyright": "Copyright © 2026 Yael Gtz",
+    "directories": {
+      "output": "dist"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "yaelin2025",
+        "repo": "zion-presenter-installer"
+      }
+    ],
+    "mac": {
+      "target": {
+        "target": "dmg",
+        "arch": [
+          "universal"
+        ]
+      },
+      "icon": "img/favicon.png",
+      "category": "public.app-category.entertainment"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "img/favicon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "Zion Presenter"
+    }
+  },
+  "dependencies": {
+    "express": "^4.22.1",
+    "socket.io": "^4.8.3",
+    "electron-log": "^5.4.3",
+    "electron-updater": "^6.7.3"
+  },
+  "devDependencies": {
+    "electron": "^40.2.1",
+    "electron-builder": "^26.7.0"
+  }
+}

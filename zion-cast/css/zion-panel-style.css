@@ -1,0 +1,1936 @@
+/* Zion Cast Panel - Zion Presenter Design System */
+/* Font Imports - Professional Typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/* ========================================
+   REGLA GLOBAL: ELIMINAR ANIMACIONES DE BOTONES
+   ======================================== */
+button,
+.btn-vis,
+.btn-opt,
+.btn-header-opt,
+.btn-theme,
+.slot-btn,
+[class*="btn-"] {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+button:hover,
+.btn-vis:hover,
+.btn-opt:hover,
+.btn-header-opt:hover,
+.btn-theme:hover,
+.slot-btn:hover,
+[class*="btn-"]:hover {
+    transform: none !important;
+    animation: none !important;
+}
+
+/* Excepción: permitir transform solo para centrado del botón X */
+.input-clear {
+    transition: none !important;
+    animation: none !important;
+    /* transform permitido solo para centrado vertical */
+}
+
+.input-clear:hover {
+    animation: none !important;
+    /* No cambiar transform en hover */
+}
+
+/* ======================================== */
+
+
+
+:root {
+    /* --- ZION PRESENTER DESIGN TOKENS --- */
+    --radius: 24px;
+    --brand-gradient: linear-gradient(135deg, #ec4899 0%, #06b6d4 100%);
+    --brand-glow: rgba(236, 72, 153, 0.3);
+    --danger: #ef4444;
+    --success: #22c55e;
+    --accent: #ec4899;
+    /* Default Zion Rosa */
+    --active-bg: rgba(236, 72, 153, 0.15);
+
+    /* LIGHT THEME (Creative Daylight) */
+    --bg: #f0f4e8;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --card-border: rgba(255, 255, 255, 0.9);
+    --text: #1e293b;
+    --text-muted: #475569;
+    --input-bg: rgba(255, 255, 255, 0.8);
+    --input-border: #ffffff;
+    --modal-overlay: rgba(240, 244, 250, 0.8);
+    --quote-bg: rgba(0, 0, 0, 0.04);
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body.dark-mode {
+    --bg: #09090b;
+    --card-bg: #18181b;
+    --glass-bg: rgba(20, 20, 25, 0.7);
+    --card-border: #27272a;
+    --text: #e4e4e7;
+    --text-muted: #d1d1d6;
+    --modal-overlay: rgba(0, 0, 0, 0.85);
+    --quote-bg: rgba(255, 255, 255, 0.03);
+    --input-bg: #09090b;
+    --input-border: #27272a;
+    --active-item-text: #ffffff;
+}
+
+/* Dark Mode Specific Tweaks */
+body.dark-mode .btn-vis {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .btn-vis:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+}
+
+/* ACTIVE buttons use accent color in Dark Mode */
+body.dark-mode .btn-vis.active {
+    background: var(--brand-gradient) !important;
+    color: var(--accent-text) !important;
+    box-shadow: none !important;
+}
+
+/* Input Fields in Dark Mode */
+body.dark-mode input[type="text"],
+body.dark-mode textarea,
+body.dark-mode select {
+    background: var(--input-bg) !important;
+    border: 1px solid var(--input-border) !important;
+    color: var(--text) !important;
+}
+
+body.dark-mode input[type="text"]:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+    outline: none;
+    border-color: var(--accent) !important;
+    box-shadow: none !important;
+}
+
+
+/* === LIGHT MODE INPUTS - MUST BE AFTER DARK MODE === */
+body:not(.dark-mode) input[type="text"],
+body:not(.dark-mode) input[type="search"],
+body:not(.dark-mode) textarea,
+body:not(.dark-mode) select {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+body:not(.dark-mode) textarea#center {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    flex: 1;
+    resize: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 0.85rem;
+}
+
+/* === END LIGHT MODE INPUTS === */
+
+
+
+/* Exception: Central Textarea maintains its specific dark look, just ensuring border matches */
+body.dark-mode textarea#center {
+    border: 1px solid #444 !important;
+    flex: 1;
+    resize: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 0.85rem;
+}
+
+body.dark-mode .about-card {
+    background: #18181b;
+}
+
+/* === LIGHT MODE OVERRIDES === */
+/* Force white inputs/textareas in light mode */
+body:not(.dark-mode) input[type="text"],
+body:not(.dark-mode) input[type="search"],
+body:not(.dark-mode) textarea,
+body:not(.dark-mode) select {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+body:not(.dark-mode) textarea#center {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+body:not(.dark-mode) input[type="text"]:focus,
+body:not(.dark-mode) textarea:focus,
+body:not(.dark-mode) select:focus {
+    border-color: var(--accent) !important;
+    box-shadow: none !important;
+}
+
+/* === END LIGHT MODE OVERRIDES === */
+
+
+/* THEMES */
+/* THEMES: TRENDY & VIBRANT PALETTES */
+/* Note: Theme variables now override accents to colorize buttons! */
+
+/* THEMES: PROFESSIONAL & ELEGANT */
+
+/* --- TEMAS CON COLORES SÓLIDOS FUERTES --- */
+
+/* 1. COSMIC (Violet) */
+/* 1. COSMIC (Violet) */
+body.theme-cosmic {
+    --accent: #8b5cf6 !important;
+    --brand-gradient: #8b5cf6 !important;
+    --active-bg: rgba(139, 92, 246, 0.15);
+}
+
+body.dark-mode.theme-cosmic {
+    background: color-mix(in srgb, var(--accent), #050508 70%) !important;
+}
+
+/* 2. EMERALD (Teal) */
+body.theme-emerald {
+    --accent: #14b8a6 !important;
+    --brand-gradient: #14b8a6 !important;
+    --active-bg: rgba(20, 184, 166, 0.15);
+}
+
+body.dark-mode.theme-emerald {
+    background: color-mix(in srgb, var(--accent), #050508 70%) !important;
+}
+
+/* 3. SUNSET (Red) */
+body.theme-sunset {
+    --accent: #FF0000 !important;
+    --brand-gradient: #FF0000 !important;
+    --active-bg: rgba(255, 0, 0, 0.15);
+}
+
+body.dark-mode.theme-sunset {
+    background: color-mix(in srgb, var(--accent), #050508 70%) !important;
+}
+
+/* 4. AMARILLO LIMÓN */
+body.theme-gold {
+    --accent: #FAFF00 !important;
+    --brand-gradient: #FAFF00 !important;
+    --active-bg: rgba(250, 255, 0, 0.15);
+    --accent-text: #000000 !important;
+}
+
+body.dark-mode.theme-gold {
+    background: color-mix(in srgb, var(--accent), #050508 70%) !important;
+}
+
+/* 5. MIDNIGHT (Blue-Grey) */
+body.theme-midnight {
+    --accent: #64748b !important;
+    --brand-gradient: #64748b !important;
+    --active-bg: rgba(100, 116, 139, 0.15);
+}
+
+body.dark-mode.theme-midnight {
+    background: color-mix(in srgb, var(--accent), #050508 70%) !important;
+}
+
+/* 6. AZURE (Light Blue) */
+body.theme-azure {
+    --accent: #0ea5e9 !important;
+    --brand-gradient: #0ea5e9 !important;
+    --active-bg: rgba(14, 165, 233, 0.15);
+}
+
+body.dark-mode.theme-azure {
+    background: color-mix(in srgb, var(--accent), #050508 70%) !important;
+}
+
+/* 7. FLAME (Orange) */
+body.theme-flame {
+    --accent: #FF6600 !important;
+    --brand-gradient: #FF6600 !important;
+    --active-bg: rgba(255, 102, 0, 0.15);
+}
+
+body.dark-mode.theme-flame {
+    background: color-mix(in srgb, var(--accent), #050508 70%) !important;
+}
+
+/* 8. ELECTRIC (Blue) */
+body.theme-electric {
+    --accent: #0047AB !important;
+    --brand-gradient: #0047AB !important;
+    --active-bg: rgba(0, 71, 171, 0.15);
+}
+
+body.dark-mode.theme-electric {
+    background: color-mix(in srgb, var(--accent), #050508 70%) !important;
+}
+
+/* 9. ROSA ALE */
+body.theme-neon {
+    --accent: #FF007F !important;
+    --brand-gradient: #FF007F !important;
+    --active-bg: rgba(255, 0, 127, 0.15);
+}
+
+body.dark-mode.theme-neon {
+    background: color-mix(in srgb, var(--accent), #050508 70%) !important;
+}
+
+/* 10. LIME (Green-Lime) */
+body.theme-lime {
+    --accent: #CCFF00 !important;
+    --brand-gradient: #CCFF00 !important;
+    --active-bg: rgba(204, 255, 0, 0.15);
+    --accent-text: #000000 !important;
+    /* Texto negro para contraste en verde brillante */
+}
+
+body.dark-mode.theme-lime {
+    background: color-mix(in srgb, var(--accent), #050508 70%) !important;
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    /* SISTEMA DE BACKGROUND ESTILO ZION PRESENTER */
+    background: var(--bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Fondo animado estilo 'Command Center' extraído de Zion Presenter */
+/* Background pulse removed for performance */
+
+/* Light mode input/textarea overrides */
+body:not(.dark-mode) input[type="text"],
+body:not(.dark-mode) input[type="search"],
+body:not(.dark-mode) textarea,
+body:not(.dark-mode) select {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+body:not(.dark-mode) textarea#center {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+/* LOGO (Material Typography) */
+.logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    /* Reducido de 20px */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    /* Reducido de 1px */
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+    text-shadow: none !important;
+    cursor: pointer;
+    user-select: none;
+    padding: 1px 0;
+    /* Reducido de 5px */
+    display: inline-block;
+}
+
+.logo-text span {
+    font-weight: 900;
+}
+
+/* End Logo Styles */
+/* --- PANEL CONTAINER (ZION PRESENTER LAYOUT) --- */
+.panel-container {
+    grid-row: 2;
+    /* Ocupa la segunda fila del grid del body */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    /* Se limita al tamaño de la fila 1fr */
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+/* --- SCROLLBAR (ZION PRESENTER STYLE) --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Scrollbar Claro (Light Mode) */
+body:not(.dark-mode) ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+body:not(.dark-mode) ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* --- HEADER (PROFESSIONAL MINIMAL) --- */
+header {
+    grid-row: 1;
+    /* Ocupa la primera fila */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px 8px 20px;
+    /* Más aire arriba, pegadito abajo */
+    background: var(--card-bg);
+    border: none;
+    border-bottom: 2px solid var(--card-border);
+    border-radius: 0;
+    box-shadow: none !important;
+    z-index: 100;
+    flex-shrink: 0;
+    margin: 0 !important;
+}
+
+.btn-header-opt {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* SIN TRANSICIONES */
+}
+
+.btn-header-opt:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-header-opt svg {
+    opacity: 0.9;
+    /* SIN TRANSICIONES */
+}
+
+.btn-header-opt:hover svg {
+    opacity: 1;
+}
+
+
+#btnThemeToggle {
+    margin-left: auto !important;
+}
+
+header h1 {
+    font-size: 0.8rem;
+    /* Reducido de 0.85rem */
+    margin: 0;
+    font-weight: 700;
+    background: none;
+    -webkit-text-fill-color: white;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    /* Reducido de 0.6px */
+    line-height: 1;
+    /* Compactar altura de línea */
+}
+
+section.card,
+details.card,
+.glass-card {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: var(--radius) !important;
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    color: var(--text) !important;
+    /* Estabilización de capas */
+    position: relative !important;
+    z-index: 5 !important;
+    transform: none !important;
+    /* REMOVED BACKDROP FILTER TO FIX SCROLL LAG */
+    /* backdrop-filter: blur(10px) !important; */
+    /* -webkit-backdrop-filter: blur(10px) !important; */
+}
+
+body.light-theme section.card,
+body.light-theme .glass-card {
+    background: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+}
+
+/* Forzamos que los scrolls internos tengan barrita visible para evitar 'trabado' */
+/* REVERTIDO: Se ocultan para match visual con Presenter */
+#bookList,
+#searchResults,
+#gridChapters,
+.overflow-y-auto,
+.scroll-list {
+    scrollbar-width: none !important;
+    overflow-y: auto !important;
+    /* Enable scrolling */
+}
+
+/* NAVEGACIÓN TIPO TABS (SEGMENTED CONTROL PREMIUM) */
+.nav-tabs {
+    display: flex;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 4px;
+    border-radius: 14px;
+    gap: 3px;
+    margin-top: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+}
+
+.nav-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 9px 8px;
+    font-size: 10.5px;
+    font-weight: 700;
+    border-radius: 11px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-tab.active {
+    background: var(--brand-gradient);
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 15px var(--brand-glow);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Grid específico para capítulos */
+.chapters-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 6px;
+    align-content: start;
+    padding-bottom: 10px;
+}
+
+.chapters-grid button {
+    padding: 0;
+    height: 36px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.chapters-grid button:not(.active):hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+}
+
+.chapters-grid button.active {
+    background: var(--brand-gradient) !important;
+    color: white !important;
+    border: none;
+}
+
+/* =========================================
+   NUCLEAR SCROLLBAR FIX (ZION PRESENTER STYLE)
+   ========================================= */
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.glass-card::-webkit-scrollbar,
+.scroll-list::-webkit-scrollbar,
+section.card::-webkit-scrollbar,
+details.card::-webkit-scrollbar,
+#bookList::-webkit-scrollbar,
+#searchResults::-webkit-scrollbar,
+#gridChapters::-webkit-scrollbar,
+div::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+    -webkit-appearance: none !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.glass-card,
+.scroll-list,
+section.card,
+details.card,
+#bookList,
+#searchResults,
+#gridChapters {
+    -ms-overflow-style: none !important;
+    /* IE and Edge */
+    scrollbar-width: none !important;
+    /* Firefox */
+}
+
+section.card:hover,
+details.card:hover {
+    box-shadow: none !important;
+}
+
+/* --- HEADINGS (ZION PRESENTER STYLE) --- */
+h2,
+h3 {
+    margin: 0 0 8px 0;
+    /* Reduced bottom margin */
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+    color: #ffffff;
+    /* --- TITULOS BLANCOS --- */
+    border-bottom: 1px solid var(--active-bg);
+    /* --- SLIGHTLY THEMED BORDER --- */
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: none !important;
+}
+
+/* Inputs */
+/* Material Inputs */
+/* Material Inputs (Light Mode) */
+/* Standard Inputs (White Style like Bible Search) */
+/* --- INPUTS (ZION PRESENTER STYLE) --- */
+input,
+textarea,
+select {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text);
+    padding: 10px 14px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 13px;
+    margin-bottom: 12px;
+    transition: none !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent), transparent 70%), inset 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+input[type="range"] {
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+/* Force Placeholders to be more visible (not grey) */
+::placeholder {
+    color: rgba(255, 255, 255, 0.8) !important;
+    opacity: 1 !important;
+}
+
+body.dark-mode ::placeholder {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: none !important;
+}
+
+/* EXCEPTION: Central Message Textarea (Keep distinct) */
+/* MOVED TO DARK-MODE SECTION - textarea#center now respects light/dark modes */
+
+textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+/* Buttons */
+/* --- BOTONES PREMIUM (ZION PRESENTER STYLE) --- */
+button {
+    /* Por defecto usa el gradiente de marca */
+    background: var(--brand-gradient);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: var(--font-main);
+    letter-spacing: 0.5px;
+    /* TRANSICIÓN ELIMINADA - causaba lag en todos los botones */
+    text-shadow: none !important;
+    box-shadow: none !important;
+    position: relative;
+    overflow: hidden;
+}
+
+button:focus {
+    outline: none !important;
+}
+
+button:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: none !important;
+}
+
+/* Primary Button */
+.btn-primary,
+button.primary {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--active-bg) 180%) !important;
+    color: var(--accent-text) !important;
+    border: 1px solid var(--accent) !important;
+}
+
+/* Secondary Button */
+.btn-secondary,
+button.secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-shadow: none;
+    box-shadow: none !important;
+}
+
+.btn-secondary:hover,
+button.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    box-shadow: none !important;
+}
+
+/* Danger Button */
+.btn-danger,
+button.danger {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: white;
+}
+
+/* Success Button */
+.btn-success,
+button.success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: white;
+}
+
+/* Option Button */
+.btn-opt {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    /* SIN TRANSICIONES */
+}
+
+.btn-opt:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: none !important;
+    color: var(--text);
+    /* transform eliminado */
+}
+
+/* Colorful Hovers for specific buttons */
+#btnSearchKeywords:hover {
+    color: var(--accent);
+}
+
+#btnPrevVerse:hover {
+    color: var(--accent);
+}
+
+#btnNextVerse:hover {
+    color: var(--accent);
+}
+
+#btnHighlight:hover {
+    color: var(--accent);
+}
+
+#btnRestoreSketch:hover {
+    color: var(--accent);
+}
+
+/* Search Bar Specifics */
+.search-group {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 4px;
+    /* Reducido de 8px */
+}
+
+/* Search Bar (Material Filled) */
+/* Search Bar (Light Mode Header Input) */
+/* Search Bar (Specific Override: Elegant Rounded Style) */
+.search-group input {
+    font-weight: 500;
+    text-align: left;
+    font-size: 0.9rem;
+    background: var(--input-bg) !important;
+    border: 1px solid var(--input-border) !important;
+    color: var(--text);
+    padding: 8px 12px 8px 40px !important;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+    height: 36px;
+}
+
+.search-group input:focus {
+    background: rgba(0, 0, 0, 0.5) !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent), transparent 70%), inset 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* New Wrapper for Inner X */
+.input-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    box-sizing: border-box !important;
+    /* Vital para que la altura sea real */
+}
+
+.input-clear {
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%) !important;
+    margin-top: -6px;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* SIN TRANSICIONES */
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.input-clear:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) !important;
+}
+
+.input-clear:active {
+    opacity: 0.8;
+}
+
+.search-group button {
+    padding: 0 10px;
+    font-size: 0.9rem;
+}
+
+/* Bible Version Selector */
+#bibleVersionSelector:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+#bibleVersionSelector:focus {
+    opacity: 1;
+    outline: none;
+    border-color: var(--accent);
+}
+
+
+/* --- VISIBILITY BUTTONS (ZION PRESENTER STYLE) --- */
+.header-vis-toolbar button {
+    flex: none;
+    /* No expandir */
+    white-space: nowrap;
+}
+
+.btn-vis {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 9.5px;
+    /* SIN TRANSICIONES - cambio instantáneo */
+    height: 24px;
+    padding: 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-vis:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text);
+    border-color: var(--accent);
+}
+
+.btn-vis.active {
+    background: var(--brand-gradient) !important;
+    color: var(--accent-text) !important;
+    font-weight: 700;
+    border: none;
+    box-shadow: none !important;
+}
+
+
+
+
+/* Slots Grid */
+.slots-area {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.slot-btn {
+    width: 100%;
+    height: 28px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* SIN TRANSICIONES */
+    font-family: var(--font-mono);
+}
+
+.slot-btn:hover {
+    border-color: var(--accent-blue);
+}
+
+.slot-btn.filled {
+    background: var(--brand-gradient);
+    border: none;
+    color: var(--accent-text);
+    font-weight: 700;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* Prevenir ghosting en listas - REMOVIDO PARA ESTABILIDAD */
+
+details summary {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    padding: 2px 0;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details[open] summary {
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 4px;
+}
+
+/* Custom Range Sliders - Compact */
+input[type=range] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+    margin: 6px 0;
+    /* Reduced margin */
+}
+
+input[type=range]::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 12px;
+    /* Smaller thumb */
+    width: 12px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    cursor: pointer;
+    margin-top: -5px;
+    border: 2px solid #fff;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 2px;
+    /* Thinner track */
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.rows {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.range-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    margin-bottom: 2px;
+    color: var(--text-secondary);
+}
+
+.range-value {
+    color: var(--accent-cyan);
+    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+/* Responsive tweaks removed to avoid conflicts with new Zion Presenter grid */
+
+.logo-text {
+    font-size: 14px;
+}
+
+section.card,
+details.card {
+    padding: 8px;
+    margin-bottom: 4px;
+}
+
+input[type="text"],
+textarea,
+select {
+    padding: 6px;
+    font-size: 0.8rem;
+}
+
+button {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+}
+
+/* End of responsive cleanup */
+
+/* TOAST NOTIFICATIONS (Alert Replacement) */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 17, 21, 0.95);
+    border: 1px solid rgba(255, 43, 43, 0.3);
+    /* Red border base */
+    border-radius: 12px;
+    padding: 12px 24px;
+    box-shadow: none !important;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -20px);
+    /* Start slightly above */
+}
+
+#toast-container.toast-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+}
+
+#toast-container.toast-error {
+    border-color: var(--accent-danger);
+    box-shadow: none !important;
+}
+
+#toast-message {
+    color: #ffffff;
+    /* Force white text on dark toast bg */
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ABOUT MODAL STYLES (Zion Cast) */
+.about-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.about-backdrop.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.about-card {
+    background: rgba(24, 24, 27, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none !important;
+    border-radius: 16px;
+    padding: 40px;
+    width: 90%;
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Add a colorful top stripe like the header */
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #FF9800, #4CAF50, #2196F3, #9C27B0);
+}
+
+.about-backdrop.visible .about-card {
+    transform: scale(1) translateY(0);
+}
+
+.logo-glow {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    filter: none !important;
+}
+
+.about-card h2 {
+    display: block;
+    width: 100%;
+    margin: 0 0 15px 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-align: center;
+    color: var(--text-primary);
+    text-shadow: none;
+}
+
+.about-card .meaning p {
+    margin: 8px 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.about-card .highlight {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+}
+
+.about-card .divider {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: var(--border-color);
+    margin: 20px auto;
+    width: 80%;
+}
+
+.badge-rc {
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--accent);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.meta {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.signature {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+    text-align: center;
+}
+
+.signature strong {
+    color: var(--text);
+}
+
+/* =========================================
+/* Legacy desktop dashboard layout removed to avoid conflicts with global grid */
+
+.search-card {
+    flex: 0 0 auto;
+    /* Fixed size */
+    margin: 0;
+}
+
+.style-card {
+    flex: 1;
+    /* Grows to take remaining space */
+    min-height: 0;
+    /* Crucial for scrolling */
+    overflow-y: auto !important;
+    margin: 0;
+    display: block;
+    /* Simpler */
+    padding-bottom: 20px;
+    scrollbar-width: thin;
+}
+
+/* Move padding to content areas only */
+/* .main-card,
+    .search-card,
+    .style-card,
+    .perm-card {
+        margin: 0 20px;
+        Add side margins
+    } */
+
+/* Except Header */
+header {
+    margin: 0;
+    /* Full width */
+    border-radius: 0;
+}
+
+/* Assign Areas */
+.vis-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: transparent;
+}
+
+.search-card {
+    grid-area: search;
+    margin-bottom: 0;
+    height: min-content;
+}
+
+.main-card {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    min-height: 0;
+    /* Add this to allow shrinking */
+    /* Contains inner scroll */
+}
+
+.perm-card {
+    grid-area: perm;
+    height: min-content;
+}
+
+.style-card {
+    grid-area: style;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto !important;
+    /* Force Scroll */
+    display: block;
+    /* Simpler display */
+    padding-bottom: 20px;
+    /* Custom Scrollbar for Style Card */
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-disabled) transparent;
+}
+
+/* End of layout cleanup */
+
+/* --- SPOTLIGHT SEARCH REFACTOR (Material Dialog) --- */
+/* --- SPOTLIGHT SEARCH REFACTOR (Material Dialog Light) --- */
+.spotlight-panel {
+    width: 600px;
+    max-width: 90%;
+    background: #FFFFFF;
+    /* White Dialog */
+    border: none;
+    border-radius: 4px;
+    /* Material Dialog Radius */
+    box-shadow: none !important;
+}
+
+.panel-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-top: 10px;
+}
+
+.spotlight-panel {
+    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: scale(0.95);
+    opacity: 0;
+}
+
+.about-backdrop.visible .spotlight-panel {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.about-backdrop.visible .spotlight-panel {
+    transform: scale(1);
+}
+
+.spotlight-header {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-card);
+    gap: 15px;
+}
+
+.spotlight-icon {
+    width: 24px;
+    opacity: 0.9;
+    mix-blend-mode: lighten;
+    /* Fix Black BG */
+}
+
+.spotlight-header input {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 1.4rem;
+    color: var(--text-primary) !important;
+    /* Dark text in modal */
+    padding: 0;
+    margin: 0;
+    height: auto;
+    font-weight: 300;
+}
+
+.spotlight-header input::placeholder {
+    color: var(--text-disabled);
+}
+
+.spotlight-header button {
+    background: transparent;
+    border: none;
+    opacity: 0.5;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.spotlight-header button:hover {
+    opacity: 1;
+}
+
+.spotlight-header button img {
+    width: 20px;
+    mix-blend-mode: lighten;
+    /* Fix Black BG */
+}
+
+.spotlight-results {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Scrollbar for Spotlight */
+.spotlight-results::-webkit-scrollbar {
+    width: 8px;
+}
+
+.spotlight-results::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.spotlight-empty {
+    text-align: center;
+    color: #ffffff;
+    margin: 40px 0;
+    font-size: 1.1rem;
+}
+
+.spotlight-empty small {
+    display: block;
+    margin-top: 10px;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+/* Result Item Override for Spotlight */
+/* Result Item Override for Spotlight */
+/* Estilo original de los versículos (Globos) */
+.bible-verse-item,
+.result-item {
+    display: block !important;
+    height: auto !important;
+    line-height: 1.6 !important;
+    margin-bottom: 8px !important;
+    white-space: normal !important;
+    flex-shrink: 0 !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 12px 16px !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    color: var(--text);
+}
+
+.bible-verse-item:hover,
+.result-item:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.bible-verse-item strong,
+.result-item strong {
+    color: var(--accent) !important;
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+.bible-verse-item.active,
+.result-item.active {
+    background: var(--active-bg, rgba(236, 72, 153, 0.15)) !important;
+    border: 1px solid var(--accent) !important;
+    color: var(--active-item-text) !important;
+    font-weight: 600;
+}
+
+.highlight {
+    background: rgba(255, 255, 0, 0.2);
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+body.light-theme .bible-verse-item,
+body.light-theme .result-item {
+    background: rgba(0, 0, 0, 0.03) !important;
+    border-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+body.light-theme .highlight {
+    background: rgba(255, 255, 0, 0.4);
+    color: #000;
+}
+
+
+/* FIX: Theme Buttons Overflow */
+.btn-theme {
+    padding: 0 !important;
+    min-width: 0 !important;
+    width: 100%;
+    cursor: pointer;
+    /* SIN TRANSICIONES */
+    box-shadow: none !important;
+}
+
+.btn-theme:hover {
+    /* transform eliminado - causaba movimiento molesto */
+    z-index: 2;
+    box-shadow: none !important;
+}
+
+.result-item div:last-child {
+    font-size: 1.1rem !important;
+    color: #fff !important;
+    font-weight: 500;
+}
+
+.verse-active {
+    background: rgba(41, 121, 255, 0.3) !important;
+    border-radius: 4px;
+}
+
+/* FIX: Obsidian Theme Compatibility with Dark Mode */
+body.dark-mode.theme-obsidian {
+    --bg-gradient: linear-gradient(180deg, #121212 0%, #000000 40%);
+    --accent-cyan: #ffffff;
+    --accent-blue: #eeeeee;
+}
+
+/* =========================================
+   ZION PRESENTATION ENGINE (DEFINITIVE V3)
+   ========================================= */
+body {
+    background: #f0f4e8 !important;
+    background-attachment: scroll !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    display: grid !important;
+    grid-template-rows: auto 1fr !important;
+    overflow: hidden !important;
+}
+
+section.card {
+    padding: 10px !important;
+    /* Interior balanceado para las tarjetas */
+}
+
+
+header {
+    grid-row: 1 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 20px !important;
+    background: rgba(18, 18, 20, 0.9) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: none !important;
+    z-index: 100 !important;
+    margin: 0 !important;
+    min-height: 54px !important;
+}
+
+.panel-container {
+    grid-row: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    padding: 6px 0 0 0 !important;
+    /* Margen de respiro entre header y paneles */
+    margin: 0 !important;
+}
+
+.main-grid {
+    padding: 0px 8px 6px 8px !important;
+    gap: 8px !important;
+}
+
+section.card {
+    padding: 10px !important;
+    /* Interior balanceado para las tarjetas */
+}
+
+/* =========================================
+   COMPACT MODE FOR LAPTOPS (Small Screens)
+   ========================================= */
+@media screen and (max-height: 800px),
+screen and (max-width: 1366px) {
+
+    /* 1. Reduce Chapter Grid Items */
+    .chapters-grid {
+        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr)) !important;
+        gap: 3px !important;
+    }
+
+    .chapters-grid button {
+        height: 24px !important;
+        font-size: 10px !important;
+        border-radius: 4px !important;
+    }
+
+    /* 2. Compact Permanent Texts Card */
+    .perm-card {
+        padding: 8px 12px !important;
+    }
+
+    .perm-card h2 {
+        font-size: 0.7rem !important;
+        margin-bottom: 4px !important;
+    }
+
+    .perm-card label {
+        font-size: 0.58rem !important;
+        margin-bottom: 0px !important;
+    }
+
+    .perm-card input {
+        padding: 2px 6px !important;
+        font-size: 0.72rem !important;
+        height: 24px !important;
+    }
+
+    .perm-card>div {
+        gap: 4px !important;
+    }
+
+    /* 3. Compact Logo & Header */
+    header {
+        min-height: 48px !important;
+        padding: 4px 15px !important;
+    }
+
+    header img {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    #headerLogoArea div[style*="font-size: 24px"] {
+        font-size: 18px !important;
+    }
+
+    #headerLogoArea div[style*="font-size: 11px"] {
+        font-size: 9px !important;
+        letter-spacing: 2px !important;
+    }
+
+    .nav-tab {
+        padding: 4px 6px !important;
+        font-size: 9px !important;
+    }
+
+    .nav-tabs {
+        height: 32px !important;
+        border-radius: 10px !important;
+    }
+
+    /* 4. Main Layout Tweaks */
+    .main-grid {
+        gap: 6px !important;
+        padding: 0px 6px 4px 6px !important;
+    }
+
+    section.glass-card {
+        padding: 12px !important;
+    }
+
+    /* Message in vivo box */
+    #center {
+        padding: 8px !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Books list items */
+    #bookList li {
+        padding: 3px 6px !important;
+        font-size: 0.7rem !important;
+    }
+
+    /* 5. About Modal Compactness */
+    .about-card {
+        padding: 12px 15px !important;
+        gap: 8px !important;
+    }
+
+    .about-card h2 {
+        font-size: 1.1rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    .about-grid {
+        gap: 8px !important;
+        margin-bottom: 1vh !important;
+    }
+
+    .about-card h3 {
+        font-size: 8.5px !important;
+        margin-bottom: 3px !important;
+    }
+
+    .about-card ul li {
+        font-size: 8.5px !important;
+        line-height: 1.2 !important;
+    }
+
+    #dedication {
+        margin: 4px 0 !important;
+        padding: 6px 12px !important;
+    }
+
+    #dedication p {
+        font-size: 9px !important;
+    }
+
+    #creditsSection {
+        margin: 4px 0 !important;
+        padding: 8px !important;
+    }
+
+    #techGrid {
+        gap: 8px !important;
+    }
+
+    /* 6. Viewer Modal Compactness (Mobile Optimization) */
+    .viewer-card {
+        padding: clamp(15px, 3vh, 25px) !important;
+        max-width: 340px !important;
+        width: 95% !important;
+        max-height: 92vh !important;
+    }
+
+    /* 7. Background Selection Modal Compactness */
+    .backgrounds-card {
+        padding: 15px !important;
+        border-radius: 16px !important;
+        height: 90vh !important;
+    }
+
+    .backgrounds-header {
+        margin-bottom: 12px !important;
+        padding-bottom: 8px !important;
+    }
+
+    .backgrounds-header h2 {
+        font-size: 1.2rem !important;
+    }
+
+    .bg-search-bar {
+        margin-bottom: 12px !important;
+    }
+
+    #unsplashSearch {
+        padding: 8px 12px 8px 35px !important;
+        font-size: 0.85rem !important;
+        border-radius: 8px !important;
+    }
+
+    .bg-search-bar button {
+        padding: 0 20px !important;
+        font-size: 0.85rem !important;
+        border-radius: 8px !important;
+    }
+
+    .bg-quick-tags {
+        margin-top: 8px !important;
+        gap: 5px !important;
+    }
+
+    .quick-tag {
+        font-size: 0.7rem !important;
+        padding: 4px 10px !important;
+    }
+
+    .bg-results-grid {
+        gap: 6px !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        grid-template-rows: auto !important;
+    }
+
+    #unsplashPagination {
+        padding: 10px 0 !important;
+        gap: 15px !important;
+    }
+
+    #unsplashPagination button {
+        padding: 6px 15px !important;
+        font-size: 0.8rem !important;
+    }
+
+    #localContent {
+        padding: 20px !important;
+    }
+
+    #dropZone {
+        max-width: 450px !important;
+        border-radius: 16px !important;
+    }
+
+    #uploadPlaceholder h3 {
+        font-size: 1.2rem !important;
+    }
+
+    #uploadPlaceholder div[style*="width: 90px"] {
+        width: 60px !important;
+        height: 60px !important;
+        margin-bottom: 15px !important;
+    }
+}
+
+/* --- MONITOR QUICK ACTIONS --- */
+.monitor-quick-actions {
+    margin-top: 15px;
+    background: rgba(0, 0, 0, 0.4) !important;
+}
+
+.btn-quick {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    padding: 8px 4px !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    border-radius: 8px !important;
+    cursor: pointer;
+    font-size: 0.55rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    height: auto !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    min-width: 50px;
+}
+
+.btn-quick span {
+    display: none;
+}
+
+.btn-quick svg {
+    opacity: 0.6;
+    stroke-width: 2.2px;
+    width: 16px;
+    height: 16px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-quick:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgba(var(--accent-rgb, 0, 176, 255), 0.4) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-quick:hover svg {
+    opacity: 1;
+    color: var(--accent);
+    transform: scale(1.08);
+}
+
+.btn-quick.active {
+    background: rgba(var(--accent-rgb, 0, 176, 255), 0.12) !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    box-shadow: 0 0 12px rgba(var(--accent-rgb, 0, 176, 255), 0.25);
+}
+
+.btn-quick.active svg {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.btn-quick:active {
+    transform: translateY(0px) scale(0.98) !important;
+}

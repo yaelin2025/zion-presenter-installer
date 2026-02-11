@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zion Presenter v3.0 - Manual de Combate</title>
+    <link href="../css/fonts.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --bg: #0f0c29;
+            --accent: #ff007a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #0f0c29;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            background-attachment: fixed;
+            color: white;
+            padding: 15px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+
+        .logo-container {
+            display: inline-block;
+            background: var(--glass);
+            padding: 15px 30px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-weight: 900;
+            font-size: 26px;
+            letter-spacing: 1px;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+        }
+
+        .subtitle {
+            font-size: 11px;
+            letter-spacing: 5px;
+            opacity: 0.7;
+            font-weight: 300;
+            margin-top: 5px;
+        }
+
+        .intro-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 900;
+            margin: 40px 0 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 45px;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 14px;
+            color: #000;
+            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+        }
+
+        .step-content b {
+            color: var(--primary);
+            font-size: 16px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        .list-item {
+            margin-left: 15px;
+            margin-top: 8px;
+            padding-left: 10px;
+            border-left: 2px solid var(--glass-border);
+            font-size: 13px;
+        }
+
+        .code-box {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            color: var(--primary);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            word-break: break-all;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .badge-waiting {
+            background: #f39c12;
+            color: #000;
+        }
+
+        .badge-connected {
+            background: #2ecc71;
+            color: #000;
+        }
+
+        .badge-disconnected {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 50px 0 80px;
+            opacity: 0.6;
+            font-size: 13px;
+        }
+
+        .tag {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Estilo para los bloques informativos de Usuario */
+        .info-block {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <h1>ZION PRESENTER</h1>
+                <p class="subtitle">VERSION 3.0</p>
+            </div>
+        </header>
+
+        <div class="intro-card">
+            <b>Objetivo:</b> Guia paso‑a‑paso para que el equipo de la iglesia configure y use Zion Presenter (Windows)
+            y OBS (macOS) con la minima intervencion.
+        </div>
+
+        <div class="section-title">Escenario 1</div>
+
+        <div class="card">
+            <h3>Instalación Completa</h3>
+
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <b>Preparar la Red</b>
+                    <p>Conecta ambos equipos a la misma red LAN mediante cable Ethernet pero verifica que la IP este en
+                        el mismo rango.</p>
+                    <p>Asegurate de que ambos tengan acceso a Internet.</p>
+                </div>
+            </div>
+
+
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <b>Modificar la fuente en OBS</b>
+                    <div class="list-item">1. Hubica sección "Escenas" y pulsa en <span class="tag">mastering
+                            compositing</span>.</div>
+                    <div class="list-item">2. Hubica fuente <span class="tag">Worship</span>, expande grupo y habre
+                        propiedades de <span class="tag">windows2</span>.</div>
+                    <div class="list-item">3. Configura:
+                        <div class="code-box">
+                            URL: https://zionpresenter.com<br>
+                            Resolución: 1280x720<br>
+                            Desactivar "Control de interacción"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <b>Abrir Zion Presenter (Windows)</b>
+                    <p>En el navegador de la PC Windows escribe: <span class="tag">https://zionpresenter.com</span></p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <b>Crear la Sala</b>
+                    <p>En la barra superior: Pulsa <span class="tag">"boton remoto"</span> → <span class="tag">"crear
+                            sala"</span>.</p>
+                    <p>Se generara un codigo (Ej: ABGF) que se guarda solo en el navegador.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <b>Vincular OBS</b>
+                    <p>Copia la URL de la sala y pegala en <span class="tag">windows2</span> de OBS:</p>
+                    <div class="code-box">https://zionpresenter.com/v/hsxx</div>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <b>Verificación</b>
+                    <div class="list-item">1. OBS mostrará <span class="badge badge-waiting">Esperando...</span></div>
+                    <div class="list-item">2. Abre ZionPresenter en Windows: Verás <span
+                            class="badge badge-connected">Conectado</span></div>
+                    <div class="list-item">3. Pulsa <b>Iniciar</b> y la etiqueta desaparecerá para mostrar el contenido.
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <b>Guardar</b>
+                    <p>En OBS marca <span class="tag">"Recargar al iniciar"</span> para que se mantenga configurado.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">Escenario 2</div>
+
+        <div class="card">
+            <h3>Uso de cada Servicio</h3>
+            <div class="info-block">La sala ya esta creada y guardada.</div>
+
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <b>Verificación Física</b>
+                    <p>Cables conectados y equipos en la misma subred.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <b>Abrir OBS (Mac)</b>
+                    <p>Inicia OBS. La escena <span class="tag">Mastering Compositing</span> ya debe tener <span
+                            class="tag">windows2</span> configurado.</p>
+                    <p>Veras el estado: <span class="badge badge-waiting">Esperando...</span></p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <b>Abrir Panel (Windows)</b>
+                    <p>Abre zionpresenter.com (recordara la sala). Pulsa <b>Iniciar</b> en cualquier modulo.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <b>Confirmar Flujo</b>
+                    <div class="list-item">1. OBS (Primero): <span class="badge badge-waiting">Esperando...</span></div>
+                    <div class="list-item">2. Abre zionpresenter.com: <span
+                            class="badge badge-connected">Conectado</span></div>
+                    <div class="list-item">3. Contenido: La etiqueta se quita y sale el texto.</div>
+                    <div class="list-item">4. en caso de cerrar zionpresenter.com: <span
+                            class="badge badge-disconnected">Desconectado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <b>Futuro</b>
+                    <p>Solo repite pasos 2-4. No hace falta crear sala nueva.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Listo! Con estos pasos la iglesia podra montar Zion Presenter y OBS de forma rapida y fiable. 🙏✨</p>
+            <p style="margin-top: 15px; font-weight: 900; opacity: 0.3; letter-spacing: 2px;">ZION CAST 2026</p>
+        </div>
+    </div>
+</body>
+
+</html>

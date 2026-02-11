@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+App.Final.zip
+_RESPALDO_ZION_CAST/
+*.log
+zion-db.json.backup
+Zion_Cast_Web/

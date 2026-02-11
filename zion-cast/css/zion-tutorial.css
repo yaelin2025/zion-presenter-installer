@@ -1,0 +1,154 @@
+/* ========================================
+   ZION CAST - INTERACTIVE TUTORIAL SYSTEM
+   Apple Liquid Glass Design
+   ======================================== */
+
+#zion-tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+    z-index: 1000000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+#zion-tutorial-overlay.active {
+    display: block;
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* The Spotlight Hole */
+.tutorial-spotlight {
+    position: absolute;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000001;
+    pointer-events: none;
+    border: 2px solid var(--accent);
+}
+
+/* Tutorial Tooltip */
+.tutorial-tooltip {
+    position: absolute;
+    background: rgba(20, 20, 25, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 20px;
+    width: 280px;
+    color: white;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    z-index: 1000002;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.tutorial-tooltip.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tutorial-title {
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tutorial-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+/* Tooltip Buttons */
+.tutorial-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.tutorial-btn {
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.tutorial-btn-next {
+    background: var(--accent);
+    color: black;
+}
+
+.tutorial-btn-next:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--brand-glow);
+}
+
+.tutorial-btn-skip {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.tutorial-btn-skip:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Badge for step counting */
+.tutorial-step-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--accent);
+    color: black;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations for the "help" icon */
+@keyframes pulseHelp {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+.btn-help-pulse {
+    animation: pulseHelp 2s infinite ease-in-out;
+}

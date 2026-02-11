@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'BenchNine';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/benchnine/v17/ahcev8612zF4jxrwMosT--tRhQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'BenchNine';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/benchnine/v17/ahcbv8612zF4jxrwMosrVw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'BenchNine';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/benchnine/v17/ahcev8612zF4jxrwMosT6-xRhQ.ttf) format('truetype');
+}
